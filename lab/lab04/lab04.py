@@ -19,7 +19,11 @@ def summation(n, term):
     True
     """
     assert n >= 1
-    "*** YOUR CODE HERE ***"
+    def factorial(m):
+        if m == 0:
+            return 0
+        return term(m) + factorial(m-1)
+    return factorial(n)
 
 
 def pascal(row, column):
@@ -34,7 +38,12 @@ def pascal(row, column):
     >>> pascal(4, 2)     # Row 4 (1 4 6 4 1), Column 2
     6
     """
-    "*** YOUR CODE HERE ***"
+    if column > row:
+        return 0
+    if row == 0 or column == 0:
+       return 1
+    return pascal(row-1, column-1) + pascal(row-1, column)
+   
 
 
 def paths(m, n):
@@ -50,7 +59,9 @@ def paths(m, n):
     >>> paths(1, 157)
     1
     """
-    "*** YOUR CODE HERE ***"
+    if m ==1 or n==1:
+        return 1
+    return paths(m-1, n) + paths(m, n-1)
 
 
 def couple(s, t):
@@ -66,7 +77,7 @@ def couple(s, t):
     [['c', 's'], [6, '1']]
     """
     assert len(s) == len(t)
-    "*** YOUR CODE HERE ***"
+    return [[s[i], t[i]] for i in range(len(s))]
 
 
 def double_eights(n):
@@ -90,7 +101,19 @@ def double_eights(n):
     >>> check(HW_SOURCE_FILE, 'double_eights', ['While', 'For'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    # def factoral(n1, num):
+    #     if n1==0:
+    #         return num>=2
+    #     if n1%10==8:
+    #         return factoral(n1//10, num+1)
+    #     else:
+    #         return factoral(n1//10, num)
+    # return factoral(n,0)
+    if (n%100)/88==1:
+        return True
+    if n//10==0:
+        return False
+    return double_eights(n//10)
 
 
 def coords(fn, seq, lower, upper):
@@ -101,7 +124,7 @@ def coords(fn, seq, lower, upper):
     [[-2, 4], [1, 1], [3, 9]]
     """
     "*** YOUR CODE HERE ***"
-    return ______
+    return [[seq[i], fn(seq[i])] for i in range(len(seq)) if fn(seq[i])>=lower and fn(seq[i])<=upper]
 
 
 def riffle(deck):
@@ -114,4 +137,4 @@ def riffle(deck):
     [0, 10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 18, 9, 19]
     """
     "*** YOUR CODE HERE ***"
-    return _______
+    return [deck[int((i%2)*len(deck)/2+i//2)] for i in range(len(deck))]
